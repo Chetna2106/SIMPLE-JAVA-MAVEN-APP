@@ -1,7 +1,6 @@
 pipeline {
-    agent {
-        label 'server1'
-    }
+    agent any
+    
   //as we will explicitylt specify agent on differnt steps
     stages {   //below provided all are sequential stages not parallel
         stage('Build') {
