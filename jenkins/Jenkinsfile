@@ -12,7 +12,10 @@ pipeline {
             }
         }
         stage('Deploy') { 
-            echo(message: 'This is deployment stage')
+            steps {
+                echo(message: 'This is deployment stage')
+            }
+            
         }
     }
 }
