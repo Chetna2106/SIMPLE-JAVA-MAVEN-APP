@@ -1,28 +1,18 @@
 pipeline {
-    agent any
-    options {
-        skipStagesAfterUnstable()
-    }
-    stages {
+    agent any  //as we will explicitylt specify agent on differnt steps
+    stages {   //below provided all are sequential stages not parallel
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                echo(message: 'This is Build stage') 
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
+                echo(message: 'This is test stage') 
             }
         }
-        stage('Deliver') { 
-            steps {
-                sh './jenkins/scripts/deliver.sh' 
-            }
+        stage('Deploy') { 
+            echo(message: 'This is deployment stage')
         }
     }
 }
