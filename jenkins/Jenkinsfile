@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    tools {
+        maven 'mymaven'
+    }
+
     
   //as we will explicitylt specify agent on differnt steps
     stages {   //below provided all are sequential stages not parallel
