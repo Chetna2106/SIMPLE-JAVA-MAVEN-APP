@@ -5,7 +5,7 @@ pipeline {
     stages {   //below provided all are sequential stages not parallel
         stage('Build') {
             steps {
-                sh 'mvn clean package' 
+                bat 'mvn clean package' 
             }
 
             post {
