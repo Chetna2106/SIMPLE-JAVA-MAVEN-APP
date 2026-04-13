@@ -1,21 +1,20 @@
 pipeline {
-    agent any  //as we will explicitylt specify agent on differnt steps
+    agent {
+        label 'server1'
+    }
+  //as we will explicitylt specify agent on differnt steps
     stages {   //below provided all are sequential stages not parallel
         stage('Build') {
             steps {
-                echo(message: 'This is Build stage') 
+                sh 'mvn clean package' 
+            }
+
+            post {
+            success {
+                    archiveArtifacts(artifacts: '**/target/*.war')
+                }
             }
         }
-        stage('Test') {
-            steps {
-                echo(message: 'This is test stage') 
-            }
-        }
-        stage('Deploy') { 
-            steps {
-                echo(message: 'This is deployment stage')
-            }
-            
-        }
+        
     }
 }
