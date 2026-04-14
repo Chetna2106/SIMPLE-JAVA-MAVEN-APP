@@ -18,7 +18,7 @@ pipeline {
         stage('Build') {
             steps {
                 bat 'mvn clean package' 
-                bat '%NAME% %{params.LASTNAME}%'
+                bat echo:'%NAME% %{params.LASTNAME}%'
                 }
                 }
             }
