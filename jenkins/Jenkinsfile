@@ -5,12 +5,22 @@ pipeline {
         maven 'mymaven'
     }
 
+    parameters {
+        string defaultValue: 'Panday', name: 'LASTNAME'
+    }
+
+    environment {
+        Name = "Chetna"
+    }
     
   //as we will explicitylt specify agent on differnt steps
     stages {   //below provided all are sequential stages not parallel
         stage('Build') {
             steps {
                 bat 'mvn clean package' 
+                bat '%NAME% %{params.LASTNAME}'
+                }
+                }
             }
 
             post {
