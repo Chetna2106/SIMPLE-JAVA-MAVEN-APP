@@ -20,15 +20,21 @@ pipeline {
         stage('Build') {
             steps {
                // bat 'mvn clean package' 
-                echo:'%NAME% %{params.LASTNAME}%'
+                echo "$NAME ${params.LASTNAME}"
                 }
+                }
+        stage('Test')
+        {
+            parallel { 
+                stage('TestA')
+                {
+                    echo "This is Test A"
+                }
+                stage('TestB')
+                {
+                    echo "This is Test B"
                 }
             }
-
-            post {
-            success {
-                    archiveArtifacts(artifacts: '**/target/*.jar')
-                }
+        }
             }
-     
 }
